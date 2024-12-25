@@ -1,6 +1,32 @@
 
 const square1 = document.querySelectorAll('.square-1');
 const square2 = document.querySelectorAll('.square-2');
+const upButton = document.querySelector('.up-button');
+const resumeDownload = document.querySelector('.resume-download');
+resumeDownload.addEventListener('click', downloadResume);
+
+window.addEventListener('scroll', onScroll);
+
+document.onreadystatechange = function() {
+    let state = document.readyState;
+
+    console.log(state);
+    if(state === 'interactive') {
+        document.getElementById('load-screen').classList.add('loading-state');
+        document.getElementById('web-page').classList.add('hidden');
+    }else if(state === 'complete') {
+        setTimeout(() => {
+            document.getElementById('load-screen').classList.add('fade-out');
+
+            setTimeout(() => {
+                document.getElementById('load-screen').classList.remove('loading-state');
+                document.getElementById('load-screen').classList.add('hidden');
+                document.getElementById('web-page').classList.remove('hidden');
+                document.getElementById('web-page').classList.add('fade-in');
+            }, 500);
+        }, 1500);
+    }
+}
 
 function toggleMenu(e) {
     const menu = document.getElementById('mobile-menu');
@@ -11,7 +37,6 @@ function toggleMenu(e) {
     }
 }
 
-window.addEventListener('scroll', onScroll);
 
 function onScroll(e) {
     const isRotating = window.scrollY === 0;
@@ -44,7 +69,6 @@ function scrollSquareShapes(isRotating) {
 }
 
 
-const upButton = document.querySelector('.up-button');
 
 window.addEventListener('scroll', (e) => {
     if(window.scrollY > 600) {
@@ -78,8 +102,6 @@ window.addEventListener('scroll', () => {
 
         scrollSquareShapes(rect - 150 <= window.innerHeight)
 
-
-
       } else {
           item.querySelector('.circle-list').classList.remove('glowing');
           item.querySelector('.line-list').classList.remove('line-glow');
@@ -101,5 +123,3 @@ window.addEventListener('scroll', () => {
     a.click();
   }
 
-  const resumeDownload = document.querySelector('.resume-download');
-  resumeDownload.addEventListener('click', downloadResume);
