@@ -114,7 +114,7 @@ window.addEventListener('scroll', () => {
 
 
   function downloadResume() {
-    const gdriveDocID = '1OUdxMrkIz8wqHlB_t5DtAWnN6bytsSU5';
+    const gdriveDocID = '1loGeWo11F2mb4zgJQKSxHdjvx79bch2g';
     const url = `https://drive.google.com/uc?export=download&id=${gdriveDocID}`;
 
     const a = document.createElement('a');
